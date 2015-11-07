@@ -7,92 +7,138 @@
 <h1>Your Sky Bill</h1>
 
 <div class="statement">
-  <p>Statement date: @bill.statement.generated_</p>
-  <p>Billing Period: @bill.statement.period.from_ - @bill.statement.period.to_</p>
-</div>
-<div class="bill">
+
+  <div class="row">
+    <div class="col-xs-6">
+      <p class="bill-section-heading-text">Statement date: @bill.statement.generated_</p>
+    </div>
+    <div class="col-xs-6">
+      <p class="bill-section-heading-text cost">Billing Period: @bill.statement.period.from_ - @bill.statement.period.to_</p>
+    </div>
+  </div>
+
+<div class="bill-section">
+  <div class="row bill-section-heading">
+    <div class="col-xs-12">
+      <h2 class="bill-section-heading-text">Package</h2>
+    </div>
+  </div>
   <div class="package">
-    <h2 class="bill-section">Package</h2>
     <table class="table table-condensed">
       <tr>
-        <th class="col-md-2">Type</th>
-        <th class="col-md-8">Name</th>
-        <th class="col-md-2 cost">Cost</th>
+        <th class="col-xs-2 table-left-col">Type</th>
+        <th class="col-xs-7">Name</th>
+        <th class="col-xs-3 cost">Cost</th>
       </tr>
       @for(subscription <- bill.`package`.subscriptions) {
         <tr>
-            <td>@{subscription.`type`}</td>
+            <td class="table-left-col">@{subscription.`type`}</td>
             <td>@subscription.name</td>
             <td class="cost">&pound;@subscription.cost_</td>
         </tr>
       }
     </table>
+  </div>
     <div class="bill-payment-row row">
-      <h2 class="bill-payment-text col-md-10">Package total:</h2>
-      <h2 class="bill-payment-text col-md-2 cost">&pound;@{bill.`package`.total_}</h2>
+      <div class="col-xs-9">
+        <h2 class="bill-payment-text">Package total:</h2>
+      </div>
+      <div class="col-xs-3">
+        <h2 class="bill-payment-text cost">&pound;@{bill.`package`.total_}</h2>
+      </div>
+    </div>
+</div>
+<div class="bill-section">
+  <div class="row bill-section-heading">
+    <div class="col-xs-12">
+      <h2 class="bill-section-heading-text">Call Charges</h2>
     </div>
   </div>
-
   <div class="callCharges">
-    <h2 class="bill-section">Call Charges</h2>
     <table class="table table-condensed">
       <tr>
-        <th class="col-md-4">Called</th>
-        <th class="col-md-6">Duration</th>
-        <th class="col-md-2 cost">Cost</th>
+        <th class="col-xs-4 table-left-col">Called</th>
+        <th class="col-xs-5">Duration</th>
+        <th class="col-xs-3 cost">Cost</th>
       </tr>
       @for(call <- bill.callCharges.calls) {
         <tr>
-          <td>@call.called</td>
+          <td class="table-left-col">@call.called</td>
           <td>@call.duration</td>
           <td class="cost">&pound;@call.cost_</td>
         </tr>
       }
     </table>
     <div class="bill-payment-row row">
-      <h2 class="bill-payment-text col-md-10">Call Charges total:</h2>
-      <h2 class="bill-payment-text col-md-2 cost">&pound;@bill.callCharges.total_</h2>
+      <h2 class="bill-payment-text col-xs-9">Call Charges total:</h2>
+      <h2 class="bill-payment-text col-xs-3 cost">&pound;@bill.callCharges.total_</h2>
     </div>
   </div>
+</div>
 
-  <div class="skyStore">
-    <h2 class="bill-section">Sky Store</h2>
-    <h3 class="bill-section sky-store-subheading">Rentals</h3>
-    <table class="table table-condensed">
+<div class="bill-section">
+  <div class="row bill-section-heading">
+    <div class="col-xs-12">
+      <h2 class="bill-section-heading-text">Sky Store</h2>
+    </div>
+  </div>
+    <div class="skyStore">
+
+      <div class="row bill-section-heading sky-store-subheading-row">
+        <div class="col-xs-12">
+          <h2 class="bill-section-heading-text sky-store-subheading-text">Rentals</h2>
+        </div>
+      </div>
+
+      <table class="table table-condensed">
       <tr>
-        <th class="col-md-10">Title</th>
-        <th class="col-md-2 cost">Cost</th>
+        <th class="col-xs-9 table-left-col">Title</th>
+        <th class="col-xs-3 cost">Cost</th>
       </tr>
       @for(rental <- bill.skyStore.rentals) {
       <tr>
-        <td>@rental.title</td>
+        <td class="table-left-col">@rental.title</td>
         <td class="cost">&pound;@rental.cost_</td>
       </tr>
       }
     </table>
-    <h3 class="bill-section sky-store-subheading">Buy and Keep</h3>
+      <div class="row bill-section-heading sky-store-subheading-row">
+        <div class="col-xs-12">
+          <h2 class="bill-section-heading-text sky-store-subheading-text">Buy and Keep</h2>
+        </div>
+      </div>
     <table class="table table-condensed">
       <tr>
-        <th class="col-md-10">Title</th>
-        <th class="col-md-2 cost">Cost</th>
+        <th class="col-xs-9 table-left-col">Title</th>
+        <th class="col-xs-3 cost">Cost</th>
       </tr>
       @for(buyAndKeep <- bill.skyStore.buyAndKeep) {
       <tr>
-        <td>@buyAndKeep.title</td>
+        <td class="table-left-col">@buyAndKeep.title</td>
         <td class="cost">&pound;@buyAndKeep.cost_</td>
       </tr>
       }
     </table>
     <div class="bill-payment-row row">
-      <h2 class="bill-payment-text col-md-10">Sky Store total:</h2>
-      <h2 class="bill-payment-text col-md-2 cost">&pound;@bill.skyStore.total_</h2>
+      <div class="col-xs-9">
+        <h2 class="bill-payment-text">Sky Store total:</h2>
+      </div>
+      <div class="col-xs-3">
+        <h2 class="bill-payment-text cost">&pound;@bill.skyStore.total_</h2>
+      </div>
     </div>
   </div>
+</div>
 
+<div class="bill-section">
   <div class="statementTotal">
     <div class="bill-payment-row grand-total-row row">
-      <h2 class="bill-payment-text col-md-10">Payment due on @bill.statement.due_:</h2>
-      <h2 class="bill-payment-text col-md-2 cost">&pound;@bill.total_</h2>
+      <div class="col-xs-9">
+        <h2 class="bill-payment-text ">Payment due on @bill.statement.due_:</h2>
+      </div>
+      <div class="col-xs-3">
+        <h2 class="bill-payment-text cost">&pound;@bill.total_</h2>
+      </div>
     </div>
   </div>
 </div>
