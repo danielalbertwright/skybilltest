@@ -7,8 +7,8 @@
   <h1>Your Sky Bill</h1>
 
   <div class="statement">
-    <p>Statement date: 11/01/15</p>
-    <p>Billing Period: 26/01/15 - 25/02/15</p>
+    <p>Statement date: @bill.statement.generated</p>
+    <p>Billing Period: @bill.statement.period.from - @bill.statement.period.to</p>
   </div>
 
   <div class="package">
@@ -19,13 +19,15 @@
         <th class="col-md-8">Name</th>
         <th class="col-md-2">Cost</th>
       </tr>
-      <tr>
-        <td>TV</td>
-        <td>Variety with Movies HD</td>
-        <td>&pound;50.00</td>
-      </tr>
+      @for(subscription <- bill.`package`.subscriptions) {
+        <tr>
+            <td>@{subscription.`type`}</td>
+            <td>@subscription.name</td>
+            <td>&pound;@subscription.cost</td>
+        </tr>
+      }
     </table>
-    <h2>Package total: &pound;71.40</h2>
+    <h2>Package total: &pound;@{bill.`package`.total}</h2>
   </div>
 
 <div class="callCharges">
@@ -36,13 +38,15 @@
       <th class="col-md-8">Duration</th>
       <th class="col-md-2">Cost</th>
     </tr>
-    <tr>
-      <td>07716393769</td>
-      <td>00:23:03</td>
-      <td>&pound;2.13</td>
-    </tr>
+    @for(call <- bill.callCharges.calls) {
+      <tr>
+        <td>@call.called</td>
+        <td>@call.duration</td>
+        <td>&pound;@call.cost</td>
+      </tr>
+    }
   </table>
-  <h2>Call Charges total: &pound;59.64</h2>
+  <h2>Call Charges total: &pound;@bill.callCharges.total</h2>
 </div>
 
 <div class="skyStore">
@@ -53,10 +57,12 @@
       <th class="col-md-10">Title</th>
       <th class="col-md-2">Cost</th>
     </tr>
+    @for(rental <- bill.skyStore.rentals) {
     <tr>
-      <td>50 Shades of Grey</td>
-      <td>&pound;4.99</td>
+      <td>@rental.title</td>
+      <td>&pound;@rental.cost</td>
     </tr>
+    }
   </table>
   <h3>Buy and Keep</h3>
   <table class="table">
@@ -64,16 +70,17 @@
       <th class="col-md-10">Title</th>
       <th class="col-md-2">Cost</th>
     </tr>
+    @for(buyAndKeep <- bill.skyStore.buyAndKeep) {
     <tr>
-      <td>That's what she said</td>
-      <td>&pound;9.99</td>
+      <td>@buyAndKeep.title</td>
+      <td>&pound;@buyAndKeep.cost</td>
     </tr>
+    }
   </table>
-  <h2>Sky Store total: &pound;24.97</h2>
+  <h2>Sky Store total: &pound;@bill.skyStore.total</h2>
 </div>
 
 <div class="statementTotal">
-  <p>Payment due on 25/01/25</p>
-  <p>&pound;136.03</p>
+  <h2>Payment due on @bill.statement.due: &pound;@bill.total</h2>
 </div>
 }
