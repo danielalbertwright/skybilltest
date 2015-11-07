@@ -3,6 +3,8 @@ package integration
 import org.specs2.mutable._
 import play.api.test.{TestBrowser, WithBrowser}
 
+import scala.util.Try
+
 object Bill1Spec {
   def loadPage(browser : TestBrowser, port: scala.Int) = browser.goTo("http://localhost:" + port + "/bill1")
 }
@@ -18,7 +20,17 @@ class Bill1Spec extends Specification {
       browser.$("h1").first().getText must_== "Your Sky Bill"
     }
 
+    "Contain the expected statement sections" in new WithBrowser {
+      // When a user navigates to the home page.
+      loadPage(browser,port)
 
+      // Then they should see the statement sections on the page.
+      Try(browser.findFirst(".statement")) must beSuccessfulTry
+      Try(browser.findFirst(".statementTotal")) must beSuccessfulTry
+      Try(browser.findFirst(".package")) must beSuccessfulTry
+      Try(browser.findFirst(".callCharges")) must beSuccessfulTry
+      Try(browser.findFirst(".skyStore")) must beSuccessfulTry
+    }
 
   }
 }
