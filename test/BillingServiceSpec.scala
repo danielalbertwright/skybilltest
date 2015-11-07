@@ -78,7 +78,7 @@ class BillingServiceSpec extends PlaySpecification with Mockito {
                               }"""
         val api = mock[Api]
         api.get(anyString) returns Future(response)
-        val billFuture: Future[Bill] = BillingService.getBill
+        val billFuture: Future[Bill] = BillingService.getBillFromApi
         val bill = Await.result(billFuture, 1 second)
         bill.total must_== 136.03
       }
