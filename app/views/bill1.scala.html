@@ -2,6 +2,78 @@
 
 @main("Your Sky Bill") {
 <!-- PageId:bill1 -->
-<h1>Your Sky Bill</h1>
 
+
+  <h1>Your Sky Bill</h1>
+
+  <div class="statement">
+    <p>Statement date: 11/01/15</p>
+    <p>Billing Period: 26/01/15 - 25/02/15</p>
+  </div>
+
+  <div class="package">
+    <h2>Package</h2>
+    <table class="table">
+      <tr>
+        <th class="col-md-2">Type</th>
+        <th class="col-md-8">Name</th>
+        <th class="col-md-2">Cost</th>
+      </tr>
+      <tr>
+        <td>TV</td>
+        <td>Variety with Movies HD</td>
+        <td>&pound;50.00</td>
+      </tr>
+    </table>
+    <h2>Package total: &pound;71.40</h2>
+  </div>
+
+<div class="callCharges">
+  <h2>Call Charges</h2>
+  <table class="table">
+    <tr>
+      <th class="col-md-2">Called</th>
+      <th class="col-md-8">Duration</th>
+      <th class="col-md-2">Cost</th>
+    </tr>
+    <tr>
+      <td>07716393769</td>
+      <td>00:23:03</td>
+      <td>&pound;2.13</td>
+    </tr>
+  </table>
+  <h2>Call Charges total: &pound;59.64</h2>
+</div>
+
+<div class="skyStore">
+  <h2>Sky Store</h2>
+  <h3>Rentals</h3>
+  <table class="table">
+    <tr>
+      <th class="col-md-10">Title</th>
+      <th class="col-md-2">Cost</th>
+    </tr>
+    <tr>
+      <td>50 Shades of Grey</td>
+      <td>&pound;4.99</td>
+    </tr>
+  </table>
+  <h3>Buy and Keep</h3>
+  <table class="table">
+    <tr>
+      <th class="col-md-10">Title</th>
+      <th class="col-md-2">Cost</th>
+    </tr>
+    <tr>
+      <td>That's what she said</td>
+      <td>&pound;9.99</td>
+    </tr>
+  </table>
+  <h2>Sky Store total: &pound;24.97</h2>
+</div>
+
+<div class="statementTotal">
+  <p>Payment due on 25/01/25</p>
+  <p>&pound;136.03</p>
+</div>
 }
