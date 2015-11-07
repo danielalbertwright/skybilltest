@@ -1,3 +1,65 @@
+.bill-section {
+  margin-top:1em;
+  font-size: 1.2em;
+  padding-top: 1em;
+  padding-left: 14px;
+  padding-bottom: 1em;
+  color: #5B5B5B;
+  margin-bottom: 0px;
+  background-color: #F4F4F4;
+  font-weight:bold;
+}
+
+.bill-payment-row {
+  margin-left:0px;
+  margin-right:0px;
+  padding-top: 1em;
+  padding-left: 14px;
+  padding-bottom: 1em;
+  background-color: #F4F4F4;
+}
+
+.bill-payment-text{
+  font-size: 1.2em;
+  color: #0078AE;
+  margin: 0px;
+  font-weight: bold;
+  padding-left:1em;
+}
+
+.sky-store-subheading {
+  font-size:1em;
+  margin-top:0px;
+  padding-top:0.8em;
+  padding-bottom:0.8em;
+}
+
+.cost {
+  text-align: right;
+  padding-right:1em !important;
+}
+
+.grand-total-row {
+  background-color: #E0EAEC;
+  margin-top:0.8em;
+}
+
+.container {
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom:50px;
+}
+
+.bill {
+  border-style: solid;
+  border-width: 0px 1px 0px 1px;
+  border-color: #F4F4F4;
+}
+
+.table {
+  margin-bottom:0px;
+}
+
 /* Make container narrow */
 @media (min-width: 768px) {
   .container {
