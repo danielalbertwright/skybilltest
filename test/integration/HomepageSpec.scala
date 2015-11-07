@@ -14,7 +14,6 @@ class HomepageSpec extends Specification {
 
       // And then click on the bill1 button.
       browser.click("#bill1link")
-      browser.await().atMost(5, TimeUnit.SECONDS).untilPage().isLoaded
 
       // Then they should be on the bill1 page.
       browser.pageSource must contain("PageId:bill1")
