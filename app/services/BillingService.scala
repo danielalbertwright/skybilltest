@@ -1,22 +1,24 @@
 package services
 
 import models._
+import play.Logger
 import play.api.libs.json.Json
+
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 object BillingService {
+
   def getBillFromApi: Future[Bill] = {
-
-    val api = new Api
-
-    api.get("http://safe-plains-5453.herokuapp.com/bill.json").map {
+    Logger.debug("Getting bill from API")
+    (new Api).get("http://safe-plains-5453.herokuapp.com/bill.json").map {
       wsresponse => wsresponse.json.as[Bill]
     }
   }
 
-  def getBillFromLocal : Future[Bill] = Future{
-    Json.parse("""{
+  def getBillFromLocal: Future[Bill] = Future {
+    Logger.debug("Getting bill from local")
+    Json.parse( """{
       "statement": {
         "generated": "2015-01-11",
         "due": "2015-01-25",

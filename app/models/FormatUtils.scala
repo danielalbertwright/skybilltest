@@ -11,7 +11,7 @@ object FormatUtils {
     dateTime.toString("dd/MM/yyyy")
   }
 
-  def formatCostForUser(cost: Double) : String = {
+  def formatCostForUser(cost: Double): String = {
     f"$cost%2.2f"
   }
 

@@ -1,7 +1,7 @@
 package models
 
-import play.api.libs.json.Json
 import models.FormatUtils._
+import play.api.libs.json.Json
 
 // http://json2caseclass.cleverapps.io/ is very cool!
 
@@ -11,6 +11,7 @@ case class Period(
                    to: String
                    ) {
   def from_ = formatDateForUser(from)
+
   def to_ = formatDateForUser(to)
 }
 
@@ -20,6 +21,7 @@ case class Statement(
                       period: Period
                       ) {
   def generated_ = formatDateForUser(generated)
+
   def due_ = formatDateForUser(due)
 }
 

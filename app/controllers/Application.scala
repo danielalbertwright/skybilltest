@@ -1,8 +1,8 @@
 package controllers
 
-import scala.concurrent.ExecutionContext.Implicits.global
 import play.api.mvc._
 import services.BillingService
+import scala.concurrent.ExecutionContext.Implicits.global
 
 class Application extends Controller {
 
@@ -11,7 +11,7 @@ class Application extends Controller {
   }
 
   def bill1 = Action.async {
-    BillingService.getBillFromLocal.map{
+    BillingService.getBillFromApi.map {
       bill => Ok(views.html.bill1(bill))
     }
   }
