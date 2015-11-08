@@ -32,20 +32,22 @@ function toTitleCase(text) {
 
 $(function() {
   // When a user clicks the packages toggle.
-  $("#package-toggle").click(function() {
+  $("#package-toggle").click(function(e) {
     slideSection("#package-toggle",".package");
+    e.preventDefault();
   });
-  $("#call-charges-toggle").click(function() {
+  $("#call-charges-toggle").click(function(e) {
     slideSection("#call-charges-toggle",".call-charges");
+    e.preventDefault();
   });
-  $("#sky-store-toggle").click(function() {
+  $("#sky-store-toggle").click(function(e) {
     slideSection("#sky-store-toggle",".sky-store");
+    e.preventDefault();
   });
 
     // When the page has loaded, fetch the Json and update the page.
     $.get( "billjson", function(json) {
         $(".container").fadeIn();
-        console.log(json)
         $("#statement-date").html(formatDate(json.statement.generated));
         $("#statement-from").html(formatDate(json.statement.period.from));
         $("#statement-to").html(formatDate(json.statement.period.to));
@@ -58,9 +60,12 @@ $(function() {
         if(json.package.subscriptions.length > 0) {
             for (i = 0; i < json.package.subscriptions.length; i++) {
                 var sub = json.package.subscriptions[i]
-                $("#package-table").append("<tr><td class=\"table-left-col\">" + toTitleCase(sub.type) + "</td><td>" + sub.name + "</td><td class=\"cost\">" + formatCurrency(sub.cost) + "</td></tr>)");
+                var newLine = '<tr><td class=\"table-left-col\">' + toTitleCase(sub.type) + '</td><td>' + sub.name + '</td><td class=\"cost\">' + formatCurrency(sub.cost) + '</td></tr>)'
+                $("#package-table").append(newLine);
             }
-            $("#package-section").fadeIn();
+            $("#package-section").fadeIn("400", function() {
+                slideSection("#package-toggle",".package");
+            });
         }
 
         if(json.callCharges.calls.length > 0) {

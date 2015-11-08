@@ -14,7 +14,7 @@ class Application extends Controller {
   }
 
   def bill1 = Action.async {
-    billingService.getBillFromLocal.map {
+    billingService.getBillFromApi.map {
       bill => Ok(views.html.bill1(bill))
     }
   }
