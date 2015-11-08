@@ -1,6 +1,4 @@
 #Sky Bill Unattended Test Project
-=================================
-
 This app is hosted at (https://desolate-harbor-2743.herokuapp.com)
 
 To run this program:
