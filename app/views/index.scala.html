@@ -16,7 +16,18 @@
     <td class="col-md-2"><a id="bill2link" class="btn btn-default" href="@controllers.routes.Application.bill2()">Example 2</a></td>
     <td class="col-md-10">In this version, the API call is cached for up to 5 minutes by Play. This prevents excessive API calls in a short period of time. I have also added show and hide buttons to the page.</td>
   </tr>
+  <tr>
+    <td class="col-md-2"><a id="bill3link" class="btn btn-default" href="@controllers.routes.Application.bill3()">Example 3</a></td>
+    <td class="col-md-10">This example uses AJAX to load the bill into the page.</td>
+  </tr>
 </table>
+
+<h3>Assumptions</h3>
+<ul>
+  <li>The API hosted on Heroku will always be available.</li>
+  <li>The JSON served will contain the same structure regardless of array length. So for example. If a bill contains no telephone calls, the call array property will still be present, just empty.</li>
+</ul>
+
 } {
   @* Page specific CSS goes here. *@
 
