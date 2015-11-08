@@ -10,8 +10,8 @@ object Bill2Spec {
 }
 
 class Bill2Spec extends Specification {
-  import integration.Bill1Spec._
-  "Bill1" should {
+  import integration.Bill2Spec._
+  "Bill2" should {
     "Contain the correct heading" in new WithBrowser {
       // When a user navigates to the home page.
       loadPage(browser,port)
@@ -26,10 +26,22 @@ class Bill2Spec extends Specification {
 
       // Then they should see the statement sections on the page.
       Try(browser.findFirst(".statement")) must beSuccessfulTry
-      Try(browser.findFirst(".statementTotal")) must beSuccessfulTry
+      Try(browser.findFirst(".statement-total")) must beSuccessfulTry
       Try(browser.findFirst(".package")) must beSuccessfulTry
-      Try(browser.findFirst(".callCharges")) must beSuccessfulTry
-      Try(browser.findFirst(".skyStore")) must beSuccessfulTry
+      Try(browser.findFirst(".call-charges")) must beSuccessfulTry
+      Try(browser.findFirst(".sky-store")) must beSuccessfulTry
     }
+
+    "The sections should be collapsed" in new WithBrowser {
+      // When a user navigates to the home page.
+      loadPage(browser,port)
+
+      // Then they shouldn't be able to see the details of the sections.
+      browser.findFirst(".package").isDisplayed must_== false
+      browser.findFirst(".call-charges").isDisplayed must_== false
+      browser.findFirst(".sky-store").isDisplayed must_== false
+    }
+
+
   }
 }
