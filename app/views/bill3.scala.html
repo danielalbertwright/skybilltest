@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <div class="bill-section">
+  <div id="package-section" class="bill-section">
     <div class="row bill-section-heading">
       <div class="col-xs-9">
         <p class="bill-section-heading-text">Package</p>
@@ -39,12 +39,12 @@
           <h2 class="bill-payment-text">Package total:</h2>
         </div>
         <div class="col-xs-3">
-          <h2 class="bill-payment-text cost">&pound;<span id="package-total"></span></h2>
+          <h2 class="bill-payment-text cost"><span id="package-total"></span></h2>
         </div>
       </div>
     </div>
   </div>
-  <div class="bill-section">
+  <div id="call-charges-section" class="bill-section">
     <div class="row bill-section-heading">
       <div class="col-xs-9">
         <p class="bill-section-heading-text">Call Charges</p>
@@ -63,11 +63,11 @@
       </table>
       <div class="bill-payment-row row">
         <h2 class="bill-payment-text col-xs-9">Call Charges total:</h2>
-        <h2 class="bill-payment-text col-xs-3 cost">&pound;<span id="call-charges-total"></span></h2>
+        <h2 class="bill-payment-text col-xs-3 cost"><span id="call-charges-total"></span></h2>
       </div>
     </div>
   </div>
-  <div class="bill-section">
+  <div id="sky-store-section" class="bill-section">
     <div class="row bill-section-heading">
       <div class="col-xs-9">
         <p class="bill-section-heading-text">Sky Store</p>
@@ -77,6 +77,7 @@
       </div>
     </div>
       <div class="sky-store">
+        <div id="rentals-section">
         <div class="row bill-section-heading sky-store-subheading-row">
           <div class="col-xs-12">
             <h2 class="bill-section-heading-text sky-store-subheading-text">Rentals</h2>
@@ -88,6 +89,8 @@
           <th class="col-xs-3 cost">Cost</th>
         </tr>
       </table>
+        </div>
+        <div id="buy-and-keep-section">
         <div class="row bill-section-heading sky-store-subheading-row">
           <div class="col-xs-12">
             <h2 class="bill-section-heading-text sky-store-subheading-text">Buy and Keep</h2>
@@ -99,12 +102,13 @@
           <th class="col-xs-3 cost">Cost</th>
         </tr>
       </table>
+        </div>
       <div class="bill-payment-row row">
         <div class="col-xs-9">
           <h2 class="bill-payment-text">Sky Store total:</h2>
         </div>
         <div class="col-xs-3">
-          <h2 class="bill-payment-text cost">&pound;<span id="sky-store-total"></span></h2>
+          <h2 class="bill-payment-text cost"><span id="sky-store-total"></span></h2>
         </div>
       </div>
     </div>
@@ -117,7 +121,7 @@
           <h2 class="bill-payment-text ">Payment due on <span id="statement-due"></span></h2>
         </div>
         <div class="col-xs-3">
-          <h2 class="bill-payment-text cost">&pound;<span id="bill-total"></span></h2>
+          <h2 class="bill-payment-text cost"><span id="bill-total"></span></h2>
         </div>
       </div>
     </div>

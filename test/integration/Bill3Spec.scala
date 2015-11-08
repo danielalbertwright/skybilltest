@@ -12,14 +12,6 @@ object Bill3Spec {
 class Bill3Spec extends Specification {
   import integration.Bill3Spec._
   "Bill3" should {
-    "Contain the correct heading" in new WithBrowser {
-      // When a user navigates to the bill3 page.
-      loadPage(browser,port)
-
-      // They should see the correct heading.
-      browser.$("h1").first().getText must_== "Your Sky Bill"
-    }
-
     "Contain the expected statement sections" in new WithBrowser {
       // When a user navigates to the bill3 page.
       loadPage(browser,port)
@@ -41,21 +33,5 @@ class Bill3Spec extends Specification {
       browser.findFirst(".call-charges").isDisplayed must_== false
       browser.findFirst(".sky-store").isDisplayed must_== false
     }
-
-
-    "The user should be able to expand sections" in new WithBrowser {
-      // When a user navigates to the bill3 page.
-      // And clicks on each of the section show links.
-      loadPage(browser,port)
-      browser.click("#package-toggle")
-      browser.click("#call-charges-toggle")
-      browser.click("#sky-store-toggle")
-
-      // Then they should be able to see the sections on the page.
-      browser.findFirst(".package").isDisplayed must_== true
-      browser.findFirst(".call-charges").isDisplayed must_== true
-      browser.findFirst(".sky-store").isDisplayed must_== true
-    }
-
   }
 }
