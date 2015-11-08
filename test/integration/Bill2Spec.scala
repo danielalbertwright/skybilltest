@@ -13,7 +13,7 @@ class Bill2Spec extends Specification {
   import integration.Bill2Spec._
   "Bill2" should {
     "Contain the correct heading" in new WithBrowser {
-      // When a user navigates to the home page.
+      // When a user navigates to the bill2 page.
       loadPage(browser,port)
 
       // They should see the correct heading.
@@ -21,7 +21,7 @@ class Bill2Spec extends Specification {
     }
 
     "Contain the expected statement sections" in new WithBrowser {
-      // When a user navigates to the home page.
+      // When a user navigates to the bill2 page.
       loadPage(browser,port)
 
       // Then they should see the statement sections on the page.
@@ -33,7 +33,7 @@ class Bill2Spec extends Specification {
     }
 
     "The sections should be collapsed" in new WithBrowser {
-      // When a user navigates to the home page.
+      // When a user navigates to the bill2 page.
       loadPage(browser,port)
 
       // Then they shouldn't be able to see the details of the sections.
@@ -42,6 +42,20 @@ class Bill2Spec extends Specification {
       browser.findFirst(".sky-store").isDisplayed must_== false
     }
 
+
+    "The user should be able to expand sections" in new WithBrowser {
+      // When a user navigates to the bill2 page.
+      // And clicks on each of the section show links.
+      loadPage(browser,port)
+      browser.click("#package-toggle")
+      browser.click("#call-charges-toggle")
+      browser.click("#sky-store-toggle")
+
+      // Then they should be able to see the sections on the page.
+      browser.findFirst(".package").isDisplayed must_== true
+      browser.findFirst(".call-charges").isDisplayed must_== true
+      browser.findFirst(".sky-store").isDisplayed must_== true
+    }
 
   }
 }

@@ -13,7 +13,7 @@ class Bill1Spec extends Specification {
   import integration.Bill1Spec._
   "Bill1" should {
     "Contain the correct heading" in new WithBrowser {
-      // When a user navigates to the home page.
+      // When a user navigates to the bill1 page.
       loadPage(browser,port)
 
       // They should see the correct heading.
@@ -21,7 +21,7 @@ class Bill1Spec extends Specification {
     }
 
     "Contain the expected statement sections" in new WithBrowser {
-      // When a user navigates to the home page.
+      // When a user navigates to the bill1 page.
       loadPage(browser,port)
 
       // Then they should see the statement sections on the page.
