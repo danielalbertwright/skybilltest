@@ -16,8 +16,6 @@ libraryDependencies ++= Seq(
   "org.webjars" % "font-awesome" % "4.4.0",
   "org.webjars" % "html5shiv" % "3.7.3",
   "org.webjars" % "respond" % "1.4.2",
-  "org.webjars" % "jasmine" % "2.2.0",
-  "org.webjars" % "jasmine-jquery" % "2.0.3"
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
