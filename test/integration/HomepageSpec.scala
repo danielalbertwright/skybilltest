@@ -15,7 +15,7 @@ class HomepageSpec extends Specification {
       loadPage(browser,port)
 
       // They should see the correct heading.
-      browser.$("h1").first().getText must_== "Sky BAPS Project Submission"
+      browser.$("h1").first().getText must_== "Sky Bill Unattended Test Project"
     }
 
     "A user should be able to get to the bill1 page" in new WithBrowser {
