@@ -1,10 +1,14 @@
 package controllers
 
 import play.api.mvc._
-import services.{CacheService, BillingService}
+import services.{BillingService, CacheService}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
+/**
+ * Application controller.
+ * Due to the small size of this project I decided not to break this apart.
+ */
 class Application extends Controller {
   val billingService = new BillingService
   val cacheService = new CacheService
@@ -35,7 +39,7 @@ class Application extends Controller {
     }
   }
 
-  def jstests = Action{
+  def jstests = Action {
     Ok(views.html.jstests())
   }
 

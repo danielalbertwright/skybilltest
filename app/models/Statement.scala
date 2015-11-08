@@ -5,6 +5,12 @@ import play.api.libs.json.Json
 
 // http://json2caseclass.cleverapps.io/ is very cool!
 
+/**
+ * A set of case classes to model the Bill receved in JSON format.
+ *
+ * I have implemented custom getter methods so that values can be formatted correctly.
+ * I have adopted the convention of putting an underscore after the variable name.
+ */
 
 case class Period(
                    from: String,
@@ -88,6 +94,10 @@ case class Bill(
   def total_ = formatCostForUser(total)
 }
 
+
+/**
+ * Json formatters used to convert between Bill and JsValues.
+ */
 object BuyAndKeep {
   implicit val formatter = Json.format[BuyAndKeep]
 }

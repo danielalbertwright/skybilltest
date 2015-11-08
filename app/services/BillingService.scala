@@ -1,5 +1,6 @@
 package services
 
+import com.typesafe.config.{ConfigFactory, Config}
 import models._
 import play.Logger
 import play.api.libs.json.Json
@@ -7,20 +8,32 @@ import play.api.libs.json.Json
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
+/**
+ * BillingService provides an interface to the Api class.
+ */
 class BillingService {
-
+  val config: Config = ConfigFactory.load()
   val api = new Api
 
+  /**
+   * Get a bill from the api.
+   * @return A Future which will resolve to a Bill served by the API.
+   */
   def getBillFromApi: Future[Bill] = {
     Logger.debug("Getting bill from API")
-    api.get("http://safe-plains-5453.herokuapp.com/bill.json").map {
+    api.get(config.getString("skybaps.api")).map {
       wsresponse => wsresponse.json.as[Bill]
     }
   }
 
+  /**
+   * Get a bill.
+   * To be used in testing.
+   * @return A Future which will resolve to a Bill parsed from the string below.
+   */
   def getBillFromLocal: Future[Bill] = Future {
-    Logger.debug("Getting bill from local")
-    Json.parse( """{
+    Logger.debug("Getting test bill from local")
+    Json.parse("""{
       "statement": {
         "generated": "2015-01-11",
         "due": "2015-01-25",
