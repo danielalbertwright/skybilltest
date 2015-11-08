@@ -40,7 +40,6 @@
           </tr>
         }
       </table>
-    </div>
       <div class="bill-payment-row row">
         <div class="col-xs-9">
           <h2 class="bill-payment-text">Package total:</h2>
@@ -49,6 +48,7 @@
           <h2 class="bill-payment-text cost">&pound;@{bill.`package`.total_}</h2>
         </div>
       </div>
+    </div>
   </div>
   <div class="bill-section">
     <div class="row bill-section-heading">
@@ -56,7 +56,7 @@
         <h2 class="bill-section-heading-text">Call Charges</h2>
       </div>
     </div>
-    <div class="callCharges">
+    <div class="call-charges">
       <table class="table table-condensed">
         <tr>
           <th class="col-xs-4 table-left-col">Called</th>
@@ -84,7 +84,7 @@
         <h2 class="bill-section-heading-text">Sky Store</h2>
       </div>
     </div>
-      <div class="skyStore">
+      <div class="sky-store">
 
         <div class="row bill-section-heading sky-store-subheading-row">
           <div class="col-xs-12">
@@ -133,7 +133,7 @@
   </div>
 
   <div class="bill-section">
-    <div class="statementTotal">
+    <div class="statement-total">
       <div class="bill-payment-row grand-total-row row">
         <div class="col-xs-9">
           <h2 class="bill-payment-text ">Payment due on @bill.statement.due_:</h2>

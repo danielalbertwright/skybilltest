@@ -82,3 +82,7 @@
   border-width: 0px 1px 0px 1px;
   border-color: #F4F4F4;
 }
+
+.package, .call-charges, .sky-store {
+  display:none;
+}
