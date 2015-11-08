@@ -21,4 +21,14 @@ class Application extends Controller {
     Ok(views.html.bill1jasmine())
   }
 
+  def bill2 = Action.async {
+    BillingService.getBillFromApi.map {
+      bill => Ok(views.html.bill2(bill))
+    }
+  }
+
+  def bill2jasmine = Action {
+    Ok(views.html.bill2jasmine())
+  }
+
 }
