@@ -25,10 +25,8 @@ class Application extends Controller {
     }
   }
 
-  def bill3 = Action.async {
-    cacheService.getBill.map {
-      bill => Ok(views.html.bill3(bill))
-    }
+  def bill3 = Action {
+    Ok(views.html.bill3())
   }
 
   def billAsJson = Action.async {
