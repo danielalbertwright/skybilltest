@@ -75,17 +75,21 @@
   padding-left:1em;
 }
 
-.cost {
+.table-left-col {
+  padding-left:1em !important;
+}
+
+.table-middle-col {
+  text-align: center;
+}
+
+.table-right-col {
   text-align: right;
   padding-right:1em !important;
 }
 
 .grand-total-row {
   background-color: #E0EAEC;
-}
-
-.table-left-col {
-  padding-left:1em !important;
 }
 
 .bill-section {

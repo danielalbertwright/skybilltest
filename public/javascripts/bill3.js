@@ -63,7 +63,7 @@ function getBill(apiPath) {
 
                 var icon = getIconForType(sub.type);
 
-                var newLine = '<tr><td class=\"table-left-col package-type-column\">' + icon + '</td><td>' + sub.name + '</td><td class=\"cost\">' + formatCurrency(sub.cost) + '</td></tr>)'
+                var newLine = '<tr><td class=\"table-left-col package-type-column\">' + icon + '</td><td>' + sub.name + '</td><td class=\"table-right-col\">' + formatCurrency(sub.cost) + '</td></tr>)'
                 $("#package-table").append(newLine);
             }
             $("#package-section").fadeIn("400", function() {
@@ -74,7 +74,7 @@ function getBill(apiPath) {
         if(json.callCharges.calls.length > 0) {
             for (i = 0; i < json.callCharges.calls.length; i++) {
                 var call = json.callCharges.calls[i]
-                $("#call-charges-table").append("<tr><td class=\"table-left-col\">" + call.called + "</td><td>" + call.duration + "</td><td class=\"cost\">" + formatCurrency(call.cost) + "</td></tr>)");
+                $("#call-charges-table").append("<tr><td class=\"table-left-col\">" + call.called + "</td><td class=\"table-middle-col\">" + call.duration + "</td><td class=\"table-right-col\">" + formatCurrency(call.cost) + "</td></tr>)");
             }
             $("#call-charges-section").fadeIn();
         }
@@ -83,14 +83,14 @@ function getBill(apiPath) {
             if(json.skyStore.rentals.length > 0) {
                 for (i = 0; i < json.skyStore.rentals.length; i++) {
                     var rental = json.skyStore.rentals[i]
-                    $("#rentals-table").append("<tr><td class=\"table-left-col\">" + rental.title + "</td><td class=\"cost\">" + formatCurrency(rental.cost) + "</td></tr>)");
+                    $("#rentals-table").append("<tr><td class=\"table-left-col\">" + rental.title + "</td><td class=\"table-right-col\">" + formatCurrency(rental.cost) + "</td></tr>)");
                 }
                 $("#rentals-section").show();
             }
             if(json.skyStore.buyAndKeep.length > 0) {
                 for (i = 0; i < json.skyStore.buyAndKeep.length; i++) {
                     var buyAndKeep = json.skyStore.buyAndKeep[i]
-                    $("#buy-and-keep-table").append("<tr><td class=\"table-left-col\">" + buyAndKeep.title + "</td><td class=\"cost\">" + formatCurrency(buyAndKeep.cost) + "</td></tr>)");
+                    $("#buy-and-keep-table").append("<tr><td class=\"table-left-col\">" + buyAndKeep.title + "</td><td class=\"table-right-col\">" + formatCurrency(buyAndKeep.cost) + "</td></tr>)");
                 }
                 $("#buy-and-keep-section").show();
             }
