@@ -35,4 +35,8 @@ class Application extends Controller {
     }
   }
 
+  def jstests = Action{
+    Ok(views.html.jstests())
+  }
+
 }

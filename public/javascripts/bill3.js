@@ -26,21 +26,25 @@ function formatCurrency(numberIn) {
     return "&pound;" + numberIn.toFixed(2);
 }
 
-$(function() {
-  // When a user clicks the packages toggle.
-  $("#package-toggle").click(function(e) {
-    slideSection("#package-toggle",".package");
-    e.preventDefault();
-  });
-  $("#call-charges-toggle").click(function(e) {
-    slideSection("#call-charges-toggle",".call-charges");
-    e.preventDefault();
-  });
-  $("#sky-store-toggle").click(function(e) {
-    slideSection("#sky-store-toggle",".sky-store");
-    e.preventDefault();
-  });
+function getIconForType(type) {
+    var icon = "";
+    switch(type) {
+        case "tv":
+            icon = "<i class=\"fa fa-television\"></i>";
+            break;
+        case "talk":
+            icon = "<i class=\"fa fa-phone\"></i>";
+            break;
+        case "broadband":
+            icon = "<i class=\"fa fa-phone\"></i>";
+            break;
+        default:
+            break;
+    }
+    return icon;
+}
 
+function getBill() {
     // When the page has loaded, fetch the Json and update the page.
     $.get( "billjson", function(json) {
         $(".container").fadeIn();
@@ -57,22 +61,7 @@ $(function() {
             for (i = 0; i < json.package.subscriptions.length; i++) {
                 var sub = json.package.subscriptions[i]
 
-                var icon = "";
-
-                switch(sub.type) {
-                    case "tv":
-                        icon = "<i class=\"fa fa-television\"></i>";
-                        break;
-                    case "talk":
-                        icon = "<i class=\"fa fa-phone\"></i>";
-                        break;
-                    case "broadband":
-                        icon = "<i class=\"fa fa-wifi\"></i>";
-                        break;
-                    default:
-                        break;
-                }
-
+                var icon = getIconForType(sub.type);
 
                 var newLine = '<tr><td class=\"table-left-col package-type-column\">' + icon + '</td><td>' + sub.name + '</td><td class=\"cost\">' + formatCurrency(sub.cost) + '</td></tr>)'
                 $("#package-table").append(newLine);
@@ -108,6 +97,25 @@ $(function() {
             $("#sky-store-section").fadeIn();
         }
     });
+}
+
+$(function() {
+  // When a user clicks the packages toggle.
+  $("#package-toggle").click(function(e) {
+    slideSection("#package-toggle",".package");
+    e.preventDefault();
+  });
+  $("#call-charges-toggle").click(function(e) {
+    slideSection("#call-charges-toggle",".call-charges");
+    e.preventDefault();
+  });
+  $("#sky-store-toggle").click(function(e) {
+    slideSection("#sky-store-toggle",".sky-store");
+    e.preventDefault();
+  });
+
+  getBill();
+
 });
 
 

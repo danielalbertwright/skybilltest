@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Refactored date examples</title>
+
+  <link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.20.0.css">
+  <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/bill3.css")">
+
+  <script src="//code.jquery.com/qunit/qunit-1.20.0.js"></script>
+  <script src="@routes.Assets.versioned("lib/jquery/jquery.min.js")"></script>
+  <script src="@routes.Assets.versioned("javascripts/bill3.js")"></script>
+
+  <script>
+  QUnit.test("addLeadingZero should format numbers to two digits", function(assert) {
+    assert.deepEqual("01", addLeadingZero(1));
+    assert.deepEqual("10", addLeadingZero(10));
+  });
+
+  QUnit.test("formatDate should format yyyy-mm-dd to dd/mm/yyyy correctly", function(assert) {
+    assert.deepEqual(formatDate("2015-01-01"), "01/01/2015");
+    assert.deepEqual(formatDate("1999-12-31"), "31/12/1999");
+  });
+
+  QUnit.test("formatCurrency should always convert a double into £#.##", function(assert) {
+    assert.deepEqual(formatCurrency(0), "&pound;0.00");
+    assert.deepEqual(formatCurrency(1), "&pound;1.00");
+    assert.deepEqual(formatCurrency(1.1), "&pound;1.10");
+    assert.deepEqual(formatCurrency(100), "&pound;100.00");
+    assert.deepEqual(formatCurrency(99.99), "&pound;99.99");
+    assert.deepEqual(formatCurrency(1234.56), "&pound;1234.56");
+  });
+
+  QUnit.test("slideSection test", function(assert) {
+    assert.equal($(".package").css('display'), "none");
+    slideSection("#package-toggle",".package");
+    assert.equal($(".package").css('display'), "block");
+  });
+
+  QUnit.test("getIconForType should return a font awesome icon for tv, talk and broadband, and an empty string otherwise", function(assert) {
+    assert.equal(getIconForType("tv"), "<i class=\"fa fa-television\"></i>");
+    assert.equal(getIconForType("talk"), "<i class=\"fa fa-phone\"></i>");
+    assert.equal(getIconForType("broadband"), "<i class=\"fa fa-phone\"></i>");
+    assert.equal(getIconForType("foo"), "");
+  });
+
+  QUnit.test("getBill should perform an ajax call which updates the page", function(assert) {
+    getBill();
+    stop();
+
+    setTimeout(function() {
+      assert.equal($("#statement-date").text(), "11/01/2015");
+      assert.equal($("#statement-from").text(), "26/01/2015");
+      assert.equal($("#statement-to").text(), "25/02/2015");
+      assert.equal($("#package-total").text(), "£71.40");
+      assert.equal($("#call-charges-total").text(), "£59.64");
+      assert.equal($("#sky-store-total").text(), "£24.97");
+      assert.equal($("#statement-due").text(), "25/01/2015");
+      assert.equal($("#bill-total").text(), "£136.03");
+
+      assert.equal($("#package-table > tbody").children(":nth-child(2)").children(":nth-child(1)").html(),"<i class=\"fa fa-television\"></i>")
+      assert.equal($("#package-table > tbody").children(":nth-child(2)").children(":nth-child(2)").html(),"Variety with Movies HD")
+      assert.equal($("#package-table > tbody").children(":nth-child(2)").children(":nth-child(3)").html(),"£50.00")
+
+      assert.equal($("#call-charges-table > tbody").children(":nth-child(2)").children(":nth-child(1)").html(),"07716393769")
+      assert.equal($("#call-charges-table > tbody").children(":nth-child(2)").children(":nth-child(2)").html(),"00:23:03")
+      assert.equal($("#call-charges-table > tbody").children(":nth-child(2)").children(":nth-child(3)").html(),"£2.13")
+
+      assert.equal($("#rentals-table > tbody").children(":nth-child(2)").children(":nth-child(1)").html(),"50 Shades of Grey")
+      assert.equal($("#rentals-table > tbody").children(":nth-child(2)").children(":nth-child(2)").html(),"£4.99")
+
+      assert.equal($("#buy-and-keep-table > tbody").children(":nth-child(2)").children(":nth-child(1)").html(),"That's what she said")
+      assert.equal($("#buy-and-keep-table > tbody").children(":nth-child(2)").children(":nth-child(2)").html(),"£9.99")
+       start();
+    }, 500);
+  });
+  </script>
+</head>
+<body>
+
+<div id="qunit"></div>
+<div id="qunit-fixture">
+  <h1 class="page-heading">Your Sky Bill</h1>
+
+  <div class="statement">
+    <div class="row">
+      <div class="col-xs-6">
+        <p class="bill-section-heading-text">Statement date: <span id="statement-date"></span></p>
+      </div>
+      <div class="col-xs-6">
+        <p class="bill-section-heading-text cost">Billing Period: <span id="statement-from"></span> - <span id="statement-to"></span></p>
+      </div>
+    </div>
+
+    <div id="package-section" class="bill-section">
+      <div class="row bill-section-heading">
+        <div class="col-xs-9">
+          <p class="bill-section-heading-text">Package</p>
+        </div>
+        <div class="col-xs-3">
+          <a href="#" id="package-toggle" class="toggle-link">Show</a>
+        </div>
+      </div>
+      <div class="package">
+        <table id="package-table" class="table table-condensed">
+          <tr>
+            <th class="col-xs-1 table-left-col package-type-column">Type</th>
+            <th class="col-xs-8">Name</th>
+            <th class="col-xs-3 cost">Cost</th>
+          </tr>
+        </table>
+        <div class="bill-payment-row row">
+          <div class="col-xs-9">
+            <h2 class="bill-payment-text">Package total:</h2>
+          </div>
+          <div class="col-xs-3">
+            <h2 class="bill-payment-text cost"><span id="package-total"></span></h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="call-charges-section" class="bill-section">
+      <div class="row bill-section-heading">
+        <div class="col-xs-9">
+          <p class="bill-section-heading-text">Call Charges</p>
+        </div>
+        <div class="col-xs-3">
+          <a href="#" id="call-charges-toggle" class="toggle-link">Show</a>
+        </div>
+      </div>
+      <div class="call-charges">
+        <table id="call-charges-table" class="table table-condensed">
+          <tr>
+            <th class="col-xs-4 table-left-col">Called</th>
+            <th class="col-xs-5">Duration</th>
+            <th class="col-xs-3 cost">Cost</th>
+          </tr>
+        </table>
+        <div class="bill-payment-row row">
+          <h2 class="bill-payment-text col-xs-9">Call Charges total:</h2>
+          <h2 class="bill-payment-text col-xs-3 cost"><span id="call-charges-total"></span></h2>
+        </div>
+      </div>
+    </div>
+    <div id="sky-store-section" class="bill-section">
+      <div class="row bill-section-heading">
+        <div class="col-xs-9">
+          <p class="bill-section-heading-text">Sky Store</p>
+        </div>
+        <div class="col-xs-3">
+          <a href="#" id="sky-store-toggle" class="toggle-link">Show</a>
+        </div>
+      </div>
+      <div class="sky-store">
+        <div id="rentals-section">
+          <div class="row bill-section-heading sky-store-subheading-row">
+            <div class="col-xs-12">
+              <h2 class="bill-section-heading-text sky-store-subheading-text">Rentals</h2>
+            </div>
+          </div>
+          <table id="rentals-table" class="table table-condensed">
+            <tr>
+              <th class="col-xs-9 table-left-col">Title</th>
+              <th class="col-xs-3 cost">Cost</th>
+            </tr>
+          </table>
+        </div>
+        <div id="buy-and-keep-section">
+          <div class="row bill-section-heading sky-store-subheading-row">
+            <div class="col-xs-12">
+              <h2 class="bill-section-heading-text sky-store-subheading-text">Buy and Keep</h2>
+            </div>
+          </div>
+          <table id="buy-and-keep-table" class="table table-condensed">
+            <tr>
+              <th class="col-xs-9 table-left-col">Title</th>
+              <th class="col-xs-3 cost">Cost</th>
+            </tr>
+          </table>
+        </div>
+        <div class="bill-payment-row row">
+          <div class="col-xs-9">
+            <h2 class="bill-payment-text">Sky Store total:</h2>
+          </div>
+          <div class="col-xs-3">
+            <h2 class="bill-payment-text cost"><span id="sky-store-total"></span></h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bill-section">
+      <div class="statement-total">
+        <div class="bill-payment-row grand-total-row row">
+          <div class="col-xs-9">
+            <h2 class="bill-payment-text ">Payment due on <span id="statement-due"></span></h2>
+          </div>
+          <div class="col-xs-3">
+            <h2 class="bill-payment-text cost"><span id="bill-total"></span></h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
