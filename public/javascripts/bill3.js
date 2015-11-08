@@ -36,7 +36,7 @@ function getIconForType(type) {
             icon = "<i class=\"fa fa-phone\"></i>";
             break;
         case "broadband":
-            icon = "<i class=\"fa fa-phone\"></i>";
+            icon = "<i class=\"fa fa-wifi\"></i>";
             break;
         default:
             break;

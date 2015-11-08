@@ -40,7 +40,7 @@
   QUnit.test("getIconForType should return a font awesome icon for tv, talk and broadband, and an empty string otherwise", function(assert) {
     assert.equal(getIconForType("tv"), "<i class=\"fa fa-television\"></i>");
     assert.equal(getIconForType("talk"), "<i class=\"fa fa-phone\"></i>");
-    assert.equal(getIconForType("broadband"), "<i class=\"fa fa-phone\"></i>");
+    assert.equal(getIconForType("broadband"), "<i class="fa fa-wifi"></i>");
     assert.equal(getIconForType("foo"), "");
   });
 
