@@ -118,6 +118,10 @@
   display:none;
 }
 
+.package-type-column {
+  text-align:center;
+}
+
 .container {
   display:none;
 }

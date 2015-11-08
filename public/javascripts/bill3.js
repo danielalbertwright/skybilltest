@@ -26,10 +26,6 @@ function formatCurrency(numberIn) {
     return "&pound;" + numberIn.toFixed(2);
 }
 
-function toTitleCase(text) {
-    return text.charAt(0).toUpperCase() + text.slice(1);
-};
-
 $(function() {
   // When a user clicks the packages toggle.
   $("#package-toggle").click(function(e) {
@@ -60,7 +56,25 @@ $(function() {
         if(json.package.subscriptions.length > 0) {
             for (i = 0; i < json.package.subscriptions.length; i++) {
                 var sub = json.package.subscriptions[i]
-                var newLine = '<tr><td class=\"table-left-col\">' + toTitleCase(sub.type) + '</td><td>' + sub.name + '</td><td class=\"cost\">' + formatCurrency(sub.cost) + '</td></tr>)'
+
+                var icon = "";
+
+                switch(sub.type) {
+                    case "tv":
+                        icon = "<i class=\"fa fa-television\"></i>";
+                        break;
+                    case "talk":
+                        icon = "<i class=\"fa fa-phone\"></i>";
+                        break;
+                    case "broadband":
+                        icon = "<i class=\"fa fa-wifi\"></i>";
+                        break;
+                    default:
+                        break;
+                }
+
+
+                var newLine = '<tr><td class=\"table-left-col package-type-column\">' + icon + '</td><td>' + sub.name + '</td><td class=\"cost\">' + formatCurrency(sub.cost) + '</td></tr>)'
                 $("#package-table").append(newLine);
             }
             $("#package-section").fadeIn("400", function() {
