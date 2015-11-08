@@ -25,5 +25,19 @@ class RoutesSpec extends Specification {
       contentType(home) must beSome.which(_ == "text/html")
       contentAsString(home) must contain("PageId:bill1")
     }
+    "render the bill2 page" in new WithApplication {
+      val home = route(FakeRequest(GET, "/bill2")).get
+
+      status(home) must equalTo(OK)
+      contentType(home) must beSome.which(_ == "text/html")
+      contentAsString(home) must contain("PageId:bill2")
+    }
+    "render the bill3 page" in new WithApplication {
+      val home = route(FakeRequest(GET, "/bill3")).get
+
+      status(home) must equalTo(OK)
+      contentType(home) must beSome.which(_ == "text/html")
+      contentAsString(home) must contain("PageId:bill3")
+    }
   }
 }

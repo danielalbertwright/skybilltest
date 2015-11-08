@@ -28,5 +28,12 @@ class ApplicationControllerSpec extends PlaySpecification with Results {
         contentAsString(result) must contain("PageId:bill2")
       }
     }
+    "serve the bill3 page" in {
+      running(FakeApplication()) {
+        val controller = new controllers.Application
+        val result = controller.bill3().apply(FakeRequest())
+        contentAsString(result) must contain("PageId:bill3")
+      }
+    }
   }
 }
