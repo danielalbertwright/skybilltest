@@ -7,11 +7,13 @@ import play.api.libs.json.Json
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
-object BillingService {
+class BillingService {
+
+  val api = new Api
 
   def getBillFromApi: Future[Bill] = {
     Logger.debug("Getting bill from API")
-    (new Api).get("http://safe-plains-5453.herokuapp.com/bill.json").map {
+    api.get("http://safe-plains-5453.herokuapp.com/bill.json").map {
       wsresponse => wsresponse.json.as[Bill]
     }
   }
