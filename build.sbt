@@ -15,7 +15,7 @@ libraryDependencies ++= Seq(
   "org.webjars" % "bootstrap" % "3.3.5",
   "org.webjars" % "font-awesome" % "4.4.0",
   "org.webjars" % "html5shiv" % "3.7.3",
-  "org.webjars" % "respond" % "1.4.2",
+  "org.webjars" % "respond" % "1.4.2"
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
