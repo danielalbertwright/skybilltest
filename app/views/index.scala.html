@@ -10,45 +10,45 @@
   </tr>
   <tr>
     <td class="col-md-2"><a id="bill1link" class="btn btn-primary" href="@controllers.routes.Application.bill1()">Example 1</a></td>
-    <td class="col-md-10">To begin with I have simply consumed the JSON on the server from the API, it is then rendered into a view in play and served to the user.</td>
+    <td class="col-md-10">To begin with I have simply consumed the JSON on the server and used this to render the bill before returning it to the user.</td>
   </tr>
   <tr>
     <td class="col-md-2"><a id="bill2link" class="btn btn-primary" href="@controllers.routes.Application.bill2()">Example 2</a></td>
-    <td class="col-md-10">In this version, the API call is cached for up to 5 minutes by Play. This prevents excessive API calls in a short period of time. I have also added show and hide buttons to the page.</td>
+    <td class="col-md-10">Then to prevent excessive calls to the API I have made use of a cache. In this example API calls are cached for up to 5 minutes by Play. I have also added show and hide toggle links to the page.</td>
   </tr>
   <tr>
     <td class="col-md-2"><a id="bill3link" class="btn btn-success" href="@controllers.routes.Application.bill3()">Example 3</a></td>
-    <td class="col-md-10">This example uses AJAX to load the bill into the page.</td>
+    <td class="col-md-10">This final example uses AJAX to load the bill into the page. A few extra UI effects have been added and effort has been made so that the page is presentable on mobile devices.</td>
   </tr>
   <tr>
     <td class="col-md-2"><a id="testslink" class="btn btn-default" href="@controllers.routes.Application.jstests()">JS Tests</a></td>
-    <td class="col-md-10">For this project I have learned the basics of the QUnit Testing Framework.</td>
+    <td class="col-md-10">During this project I have learned the basics of the QUnit Testing Framework. This page contains a test runner that performs tests on the javascript used in Example 3.</td>
   </tr>
   <tr>
     <td class="col-md-2"><a id="githublink" class="btn btn-default" href="#">Github</a></td>
-    <td class="col-md-10">Source code hosted on GitHub.</td>
+    <td class="col-md-10">Source code is hosted on GitHub.</td>
   </tr>
 </table>
 
 <h3>Assumptions</h3>
 <ul>
-  <li>The API hosted on Heroku will always be available.</li>
+  <li>The API hosted on Heroku at <a href="http://safe-plains-5453.herokuapp.com/bill.json">http://safe-plains-5453.herokuapp.com/bill.json</a> will always be available.</li>
   <li>The JSON received by the application will always contain the same structure as the example Json provided for this project. For example, if a bill contains no telephone calls, the calls array property will still be present, just empty.</li>
   <li>For the first two examples, the number of subscriptions, calls, rentals and buyAndKeeps will always > 0.</li>
-  <li>Ajax calls never fail.</li>
-  <li>Latest version of Firefox or Chrome will be used to view the bill.</li>
+  <li>Ajax calls never fail. (If only...)</li>
+  <li>Latest version of Firefox or Chrome will be used to view the bill on a desktop or mobile device. (Again, if only...)</li>
 </ul>
 
 <h3>Possible further steps</h3>
 <ul>
+  <li>Implement client and server side failure handling. What if the JSON returned from the API is erroneous?</li>
   <li>Improve accessibility.</li>
+  <li>Support for browsers with disabled Javascript.</li>
   <li>Graphics, favicon etc.</li>
   <li>Custom error pages.</li>
   <li>Improve support for older browsers.</li>
-  <li>Implement client side and server side failure handling.</li>
-  <li>Support for browsers with disabled Javascript.</li>
   <li>Use websockets to stream live bill changes to the user in realtime.</li>
-  <li>Learn Angular and reimplement the front end.</li>
+  <li>Learn Angular and reimplement the front end! <i class="fa fa-smile-o"></i></li>
 </ul>
 
 } {

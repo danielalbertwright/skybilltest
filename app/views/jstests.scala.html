@@ -45,7 +45,7 @@
   });
 
   QUnit.test("getBill should perform an ajax call which updates the page", function(assert) {
-    getBill();
+    getBill("testjson");
     stop();
 
     setTimeout(function() {

@@ -33,5 +33,16 @@ class Bill3Spec extends Specification {
       browser.findFirst(".call-charges").isDisplayed must_== false
       browser.findFirst(".sky-store").isDisplayed must_== false
     }
+
+    /*
+    There is definitely room for improvement here. I've had quite a few issues with the WebDriver and ideally
+    would like to have tests that:
+    1. Hijack the Application controller so that the same Json file is returned every time for testing.
+    2. Simulate a user navigating to the page.
+    3. Checking the contents of the page.
+    4. Performing interactions with the page - clicking the show and hide links - and asserting that the page looks as expected.
+    But hey, at least this is mostly covered in the QUnit javascript tests!
+    */
+
   }
 }

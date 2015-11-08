@@ -44,9 +44,9 @@ function getIconForType(type) {
     return icon;
 }
 
-function getBill() {
+function getBill(apiPath) {
     // When the page has loaded, fetch the Json and update the page.
-    $.get( "billjson", function(json) {
+    $.get( apiPath, function(json) {
         $(".container").fadeIn();
         $("#statement-date").html(formatDate(json.statement.generated));
         $("#statement-from").html(formatDate(json.statement.period.from));
@@ -114,7 +114,7 @@ $(function() {
     e.preventDefault();
   });
 
-  getBill();
+  getBill("billjson");
 
 });
 
