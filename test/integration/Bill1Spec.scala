@@ -31,6 +31,5 @@ class Bill1Spec extends Specification {
       Try(browser.findFirst(".callCharges")) must beSuccessfulTry
       Try(browser.findFirst(".skyStore")) must beSuccessfulTry
     }
-
   }
 }
