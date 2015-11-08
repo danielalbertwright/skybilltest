@@ -8,10 +8,9 @@ import scala.concurrent.Future
 
 
 class Api {
-  val logger: Logger = Logger(this.getClass)
 
   def get(url: String): Future[WSResponse] = {
-    logger.info(s"Get request to API: [$url]")
+    Logger.debug(s"Get request to API: [$url]")
 
     val holder: WSRequest = WS.url(url)
       .withHeaders("Accept" -> "application/json")

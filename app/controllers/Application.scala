@@ -1,12 +1,13 @@
 package controllers
 
 import play.api.mvc._
-import services.BillingService
+import services.{CacheService, BillingService}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
 class Application extends Controller {
   val billingService = new BillingService
+  val cacheService = new CacheService
 
   def index = Action {
     Ok(views.html.index())
@@ -19,7 +20,7 @@ class Application extends Controller {
   }
 
   def bill2 = Action.async {
-    billingService.getBillFromLocal.map {
+    cacheService.getBill.map {
       bill => Ok(views.html.bill2(bill))
     }
   }
