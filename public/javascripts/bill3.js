@@ -47,7 +47,8 @@ function getIconForType(type) {
 function getBill(apiPath) {
     // When the page has loaded, fetch the Json and update the page.
     $.get( apiPath, function(json) {
-        $(".container").fadeIn();
+        $(".loading").hide();
+        $(".statement").fadeIn();
         $("#statement-date").html(formatDate(json.statement.generated));
         $("#statement-from").html(formatDate(json.statement.period.from));
         $("#statement-to").html(formatDate(json.statement.period.to));

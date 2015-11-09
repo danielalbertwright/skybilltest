@@ -32,46 +32,49 @@
   });
 
   QUnit.test("slideSection test", function(assert) {
-    assert.equal($(".package").css('display'), "none");
+    assert.deepEqual($(".package").css('display'), "none");
     slideSection("#package-toggle",".package");
-    assert.equal($(".package").css('display'), "block");
+    assert.deepEqual($(".package").css('display'), "block");
   });
 
   QUnit.test("getIconForType should return a font awesome icon for tv, talk and broadband, and an empty string otherwise", function(assert) {
-    assert.equal(getIconForType("tv"), "<i class=\"fa fa-television\"></i>");
-    assert.equal(getIconForType("talk"), "<i class=\"fa fa-phone\"></i>");
-    assert.equal(getIconForType("broadband"), "<i class=\"fa fa-wifi\"></i>");
-    assert.equal(getIconForType("foo"), "");
+    assert.deepEqual(getIconForType("tv"), "<i class=\"fa fa-television\"></i>");
+    assert.deepEqual(getIconForType("talk"), "<i class=\"fa fa-phone\"></i>");
+    assert.deepEqual(getIconForType("broadband"), "<i class=\"fa fa-wifi\"></i>");
+    assert.deepEqual(getIconForType("foo"), "");
   });
 
   QUnit.test("getBill should perform an ajax call which updates the page", function(assert) {
+    assert.deepEqual($(".loading").css('display'), "block");
+
     getBill("testjson");
     stop();
 
     setTimeout(function() {
-      assert.equal($("#statement-date").text(), "11/01/2015");
-      assert.equal($("#statement-from").text(), "26/01/2015");
-      assert.equal($("#statement-to").text(), "25/02/2015");
-      assert.equal($("#package-total").text(), "£71.40");
-      assert.equal($("#call-charges-total").text(), "£59.64");
-      assert.equal($("#sky-store-total").text(), "£24.97");
-      assert.equal($("#statement-due").text(), "25/01/2015");
-      assert.equal($("#bill-total").text(), "£136.03");
+      assert.deepEqual($(".loading").css('display'), "none");
+      assert.deepEqual($("#statement-date").text(), "11/01/2015");
+      assert.deepEqual($("#statement-from").text(), "26/01/2015");
+      assert.deepEqual($("#statement-to").text(), "25/02/2015");
+      assert.deepEqual($("#package-total").text(), "£71.40");
+      assert.deepEqual($("#call-charges-total").text(), "£59.64");
+      assert.deepEqual($("#sky-store-total").text(), "£24.97");
+      assert.deepEqual($("#statement-due").text(), "25/01/2015");
+      assert.deepEqual($("#bill-total").text(), "£136.03");
 
-      assert.equal($("#package-table > tbody").children(":nth-child(2)").children(":nth-child(1)").html(),"<i class=\"fa fa-television\"></i>")
-      assert.equal($("#package-table > tbody").children(":nth-child(2)").children(":nth-child(2)").html(),"Variety with Movies HD")
-      assert.equal($("#package-table > tbody").children(":nth-child(2)").children(":nth-child(3)").html(),"£50.00")
+      assert.deepEqual($("#package-table > tbody").children(":nth-child(2)").children(":nth-child(1)").html(),"<i class=\"fa fa-television\"></i>")
+      assert.deepEqual($("#package-table > tbody").children(":nth-child(2)").children(":nth-child(2)").html(),"Variety with Movies HD")
+      assert.deepEqual($("#package-table > tbody").children(":nth-child(2)").children(":nth-child(3)").html(),"£50.00")
 
-      assert.equal($("#call-charges-table > tbody").children(":nth-child(2)").children(":nth-child(1)").html(),"07716393769")
-      assert.equal($("#call-charges-table > tbody").children(":nth-child(2)").children(":nth-child(2)").html(),"00:23:03")
-      assert.equal($("#call-charges-table > tbody").children(":nth-child(2)").children(":nth-child(3)").html(),"£2.13")
+      assert.deepEqual($("#call-charges-table > tbody").children(":nth-child(2)").children(":nth-child(1)").html(),"07716393769")
+      assert.deepEqual($("#call-charges-table > tbody").children(":nth-child(2)").children(":nth-child(2)").html(),"00:23:03")
+      assert.deepEqual($("#call-charges-table > tbody").children(":nth-child(2)").children(":nth-child(3)").html(),"£2.13")
 
-      assert.equal($("#rentals-table > tbody").children(":nth-child(2)").children(":nth-child(1)").html(),"50 Shades of Grey")
-      assert.equal($("#rentals-table > tbody").children(":nth-child(2)").children(":nth-child(2)").html(),"£4.99")
+      assert.deepEqual($("#rentals-table > tbody").children(":nth-child(2)").children(":nth-child(1)").html(),"50 Shades of Grey")
+      assert.deepEqual($("#rentals-table > tbody").children(":nth-child(2)").children(":nth-child(2)").html(),"£4.99")
 
-      assert.equal($("#buy-and-keep-table > tbody").children(":nth-child(2)").children(":nth-child(1)").html(),"That's what she said")
-      assert.equal($("#buy-and-keep-table > tbody").children(":nth-child(2)").children(":nth-child(2)").html(),"£9.99")
-       start();
+      assert.deepEqual($("#buy-and-keep-table > tbody").children(":nth-child(2)").children(":nth-child(1)").html(),"That's what she said")
+      assert.deepEqual($("#buy-and-keep-table > tbody").children(":nth-child(2)").children(":nth-child(2)").html(),"£9.99")
+      start();
     }, 500);
   });
   </script>
@@ -80,9 +83,8 @@
 
 <div id="qunit"></div>
 <div id="qunit-fixture">
-  <h1 class="page-heading">Your Sky Bill</h1>
-
   <div class="statement">
+  <h1 class="page-heading">Your Sky Bill</h1>
     <div class="row">
       <div class="col-xs-6">
         <p class="bill-section-heading-text">Statement date: <span id="statement-date"></span></p>
@@ -201,6 +203,9 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="loading">
+    <i class="fa fa-spinner fa-spin fa-5x"></i>
   </div>
 </div>
 
